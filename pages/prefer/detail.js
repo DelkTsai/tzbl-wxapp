@@ -3,6 +3,7 @@ import { shelves_product_detail, shelves_product,add_order} from '../../api/inde
 import { set_shopCart, set_unconfirmed} from '../../utils/set.js'
 
 
+
 Page({
   /**
    * 页面的初始数据
@@ -19,7 +20,7 @@ Page({
     shopNum:0,
     id:"",
     buyNumber:1,
-    buyNumMax:10,   //手动设置哥最大购买 10
+    buyNumMax:30,   //手动设置哥最大购买 10
     
   },
 
@@ -36,10 +37,11 @@ Page({
   //计算购物车商品件数
   getshopNum(){
     const shopCart = wx.getStorageSync('shopCart') || [];
+    let shopNum=0;
     if (shopCart.length<=0)return;
     shopCart.forEach((value,index,arr)=>{
       this.setData({
-        shopNum: this.data.shopNum + value.num
+        shopNum: shopNum + value.num
       })
     })
   },
@@ -127,11 +129,13 @@ Page({
       icon: 'success',
       duration: 2000,
     })
+    this.getshopNum();
     
   },
   goShopCart() {
-    wx.navigateTo({
-      url: `/pages/shoppingCart/index`
+ 
+    wx.switchTab({
+      url: '/pages/shoppingCart/index'
     })
   },
   playOrder(){

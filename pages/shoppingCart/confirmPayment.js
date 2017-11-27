@@ -1,20 +1,48 @@
 // pages/shoppingCart/confirmPayment.js
+import { order_detail } from  '../../api/index.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+     detail:{},
+     order_id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+     this.setData({
+       order_id: options.id
+     })
+     this.getData(options.id);
   },
-
+  /**
+   * 获得订单信息
+   */
+  getData(id){
+    order_detail({ data: {}}, id).then(res=>{
+      this.setData({
+        detail:res.data
+      })
+    })
+  },
+  payOrder() {
+    wx.requestPayment({
+      'timeStamp': '',
+      'nonceStr': '',
+      'package': '',
+      'signType': 'MD5',
+      'paySign': '',
+      'success': function (res) {
+      },
+      'fail': function (res) {
+      }
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

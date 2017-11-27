@@ -1,7 +1,8 @@
 //index.js
 var app = getApp()
-import { set_shopCart } from '../../utils/set.js' ;
+import { set_shopCart, set_shelves_info, set_unconfirmed  } from '../../utils/set.js' ;
 import { shelves, shelves_product } from '../../api/index';
+import { isJSON } from '../../utils/util.js';
 Page({
   data: {
     goodsList: {
@@ -10,8 +11,7 @@ Page({
       totalCount: 0,//购物车的件数
       allSelect: true,
       noSelect: false,
-      list: [],
-       
+      list: []
     },
     delBtnWidth: 120,    //删除按钮宽度单位（rpx）
   },
@@ -23,7 +23,7 @@ Page({
     shopCart.forEach((value, index, arr) => {
       count+= value.num
     })
-    console.log(count)
+    //console.log(count)
     return count;
     
   },
@@ -52,6 +52,9 @@ Page({
     this.onShow();
   },
   onShow: function () {
+    this.getData()
+  },
+  getData(){
     var shopList = [];
     // 获取购物车数据
     var shopList = wx.getStorageSync('shopCart') || [];
@@ -199,7 +202,7 @@ Page({
     var index = e.currentTarget.dataset.index;
     var list = this.data.goodsList.list;
     if (index !== "" && index != null) {
-      if (list[parseInt(index)].num < 10) {
+      if (list[parseInt(index)].num < 30) {
         list[parseInt(index)].num++;
         this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list, this.getshopNum());
       }
@@ -252,6 +255,12 @@ Page({
     this.setGoodsList(this.getSaveHide(), this.totalPrice(), this.allSelect(), this.noSelect(), list, this.getshopNum());
   },
   navigateToPayOrder: function () {
+    const shopList = wx.getStorageSync('shopCart')
+    set_unconfirmed(shopList)
+    wx.removeStorage({
+      key: 'shopCart',
+     
+    })
     wx.navigateTo({
       url: "/pages/shoppingCart/submitOrder"
     })
@@ -309,7 +318,9 @@ Page({
            
          })
       }
-      set_shelves_info(res.data.list[0])
+      set_shelves_info(res.data.list[0]);
+      this.getData()
+
     });
 
 
@@ -320,23 +331,31 @@ Page({
   get_shelves_product(product_no) {
 
     shelves_product({ data: { product_no } }).then(res => {
+      console.log(this.is_identical_shelves(res.data.list[0].shelves_id))
       if (!this.is_identical_shelves(res.data.list[0].shelves_id)) {
         wx.removeStorage({
           key: 'shopCart',
-        })
+        });
+        wx.removeStorage({
+          key: 'shelves_info',
+        });
+        const where = {
+          id: res.data.list[0].shelves_id
+        }
+       
+        shelves({ data: { where: JSON.stringify(where) } }).then((res1) => {
+          console.log(res1)
+          set_shelves_info(res1.data.list[0])
+        });
+        console.log(wx.getStorageSync('shopCart'),11111111)
+
       }
-      //获得货架信息
-
-      const where = {
-        id: res.data.list[0].shelves_id
-      }
-      shelves({ data: { where: JSON.stringify(where) } }).then((res) => {
-
-         set_shelves_info(res.data.list[0])
-      });
-
+    
+    
+      
       //获取购物车内的商品
       const shopCart = wx.getStorageSync('shopCart') || [];
+      console.log(shopCart)
       let i = shopCart.findIndex((value, index, arry) => {
         return value.id == res.data.list[0].id
       })
@@ -352,9 +371,7 @@ Page({
         icon: 'success',
         duration: 2000,
         success: () => {
-          wx.switchTab({
-            url: '/pages/shoppingCart/index'
-          })
+          this.getData()
         }
       })
     })

@@ -171,13 +171,15 @@ page{
 
 .a-goods-conts .delete-btn{
     width: 120rpx;
-   line-height: 130rpx;
+    line-height: 130rpx;
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     background:#e64340;
     font-size: 24rpx;
     color: #fff;
+  
 }
 
 

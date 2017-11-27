@@ -15,6 +15,7 @@ page{
 }
 .weui-navbar{
   background-color: #ffffff;
+  position:fixed;
 }
 .weui-navbar__item.weui-bar__item_on{
   color: #f8b62b;

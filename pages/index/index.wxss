@@ -66,12 +66,13 @@
 .shopping_guide .bd .bd-bd{
   color: #a8a296
 }
-.news{
-  padding: 0rpx 40rpx;
+.newslist{
+  padding:20rpx 40rpx;
 }
 .news .news-hd{
   color: #f8b62b;
   font-size: 30rpx;
+  padding-left: 40rpx;
 }
 .news .bd-hd{
   width: 160rpx;
@@ -106,8 +107,4 @@
 
 .weui-media-box:before{
   border: none;
-}
-.newslist{
-  padding-left:0;
-  padding-right:0; 
 }

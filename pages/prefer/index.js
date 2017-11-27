@@ -39,7 +39,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    showToast('加载中...')
     this.setData({
       shelves_id: wx.getStorageSync('shelves_info').id || '',
       height: wx.getSystemInfoSync().windowHeight
@@ -82,28 +81,28 @@ Page({
   
   },
   getData(){
+  console.log(4111)
     this.setData({
       query:{
-        //shelves_id: wx.getStorageSync('shelves_info').id || '',
-        //is_recommend: 1,
+        shelves_id: wx.getStorageSync('shelves_info').id || '',
+        is_recommend: 1,
         offset: 0,
         limit: 10
       }
       
     })
     //console.log(wx.getStorageSync('shelves_info').id, this.data.query.shelves_id)
-    //if (!this.data.query.shelves_id){
-    //     setTimeout(function () {
-    //       wx.hideLoading()
-    //     }, 2000)
-    //     return;
-    // } 
+    if (!this.data.query.shelves_id){
+        return;
+    } 
+    showToast('加载中...')
     shelves_product({ data: this.data.query}).then(res=>{
+      console.log(res.data.list)
          this.setData({
            productList: res.data.list,
            count: res.data.count
          })
-         wx.hideLoading()
+     wx.hideLoading()
     })
   },
   upper: function () {

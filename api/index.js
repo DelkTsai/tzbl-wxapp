@@ -103,6 +103,34 @@ const add_order = (params)=>{
     resolve(wxRequest(params, `${config.apiUrl}/order`));
   })
 }
+
+/**
+ * 获得订单详情
+ */
+const order_detail = (params, id) => {
+  return new Promise((resolve, reject) => {
+    resolve(wxRequest(params, `${config.apiUrl}/order/${id}`));
+  })
+}
+
+/**
+ * 获得订单列表
+ */
+
+const order =(params)=>{
+  return new Promise((resolve, reject) => {
+    resolve(wxRequest(params, `${config.apiUrl}/order`));
+  })
+}
+
+/**
+ * 微信支付
+ */
+const payorder =(params)=>{
+  return new Promise((resolve, reject) => {
+    resolve(wxRequest(params, `${config.apiUrl}/wx_pay`));
+  })
+}
 module.exports = {
   search,
   getUserInfoById,
@@ -110,5 +138,9 @@ module.exports = {
   shelves,
   shelves_product,
   shelves_product_detail,
-  add_order
+  add_order,
+  order_detail,
+  order,
+  payorder
+
 };

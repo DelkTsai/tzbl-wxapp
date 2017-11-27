@@ -9,7 +9,7 @@ import {
 } from '../../utils/util'
 Page({
   data: {
-    shelves_info: wx.getStorageSync('shelves_info') || {name:''},     //货架信息
+    shelves_info:{name:''},     //货架信息
     newsList: news || []   //新闻列表
   },
   //事件处理函数
@@ -17,9 +17,13 @@ Page({
     
   },
   onLoad: function () {
-   
-    
-
+    console.log(app.globalData.userInfo)
+    this.onShow();
+  },
+  onShow(){
+  this.setData({
+    shelves_info: wx.getStorageSync('shelves_info') || { name: '' }
+  })
   },
   // 控件处理程序
   controltap() {

@@ -26,13 +26,19 @@
 				{
 					"id": 0,
 					"name": "test",
-					"pathName": "pages/shoppingCart/submitOrder",
-					"query": "id=1"
+					"pathName": "pages/shoppingCart/confirmPayment",
+					"query": "id=14"
 				},
 				{
 					"id": -1,
 					"name": "shopcart",
 					"pathName": "pages/shoppingCart/index",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "test",
+					"pathName": "pages/mine/order",
 					"query": ""
 				}
 			]

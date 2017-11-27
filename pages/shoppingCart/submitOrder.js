@@ -31,9 +31,9 @@ Page({
     }
 
     add_order({ data: { parameter: JSON.stringify(order_list), shelves_id: list[0].shelves_id}}).then((res)=>{
-      console.log(res)
+   
        wx.navigateTo({
-         url: 'confirmPayment',
+         url: `confirmPayment?id=${res.data.id}`,
        })
     })
     

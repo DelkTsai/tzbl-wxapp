@@ -1,20 +1,32 @@
 // pages/mine/detail.js
+import { order_detail } from '../../api/index.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    detail:{},
+    shelves_name:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      shelves_name: options.shelves_name
+    })
+    this.getData(options.id)
   
   },
-
+  getData(id){
+    order_detail({ data: {} }, id).then(res => {
+      this.setData({
+        detail: res.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

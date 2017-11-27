@@ -2,10 +2,10 @@
 <view class="container">
   <view class="swiper-box">
     <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true" style="height:580rpx;">
-      <block wx:for="{{background}}" wx:key="idx" wx:for-index="idx" >
+      <block wx:for="{{1}}" wx:key="idx" wx:for-index="idx" >
         <swiper-item>
           <view class="banner">
-            <image src="{{item}}"></image>
+            <image src="{{goods.img_url}}"></image>
           </view>
         </swiper-item>
       </block>

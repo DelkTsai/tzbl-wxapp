@@ -108,7 +108,7 @@ var login = function login(options) {
       data: Object.assign({}, userInfo, {aid}),
       success: function (result) {
         var data = result.data;
-       // console.log(data,11111)
+       
         wx.setStorageSync('token', result.data.data.token);
         options.success(result.data.data);
       },
