@@ -256,11 +256,14 @@ Page({
   },
   navigateToPayOrder: function () {
     const shopList = wx.getStorageSync('shopCart')
+    if (shopList.length==0){
+     wx.showToast({
+       title: '请先扫码购物',
+       icon: 'loading'
+     })
+     return;
+    }
     set_unconfirmed(shopList)
-    wx.removeStorage({
-      key: 'shopCart',
-     
-    })
     wx.navigateTo({
       url: "/pages/shoppingCart/submitOrder"
     })

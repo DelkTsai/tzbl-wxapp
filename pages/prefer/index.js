@@ -126,7 +126,7 @@ Page({
     showToast('加载中');
     if ((this.data.count - (this.data.query.offset + this.data.query.limit) )/ this.data.query.limit <= 0) {
 
-      showToast('没有更多了');
+      showToast('没有更多了',1000);
       return;
     }
     console.log(this.data.query.offset ,this.data.query.limit)

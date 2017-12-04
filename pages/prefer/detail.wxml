@@ -43,7 +43,7 @@
       <view class='good-list'>
           <view class='list' wx:for="{{goodslist}}" wx:for-index="idx" wx:key="idx" wx:for-item="item"  bindtap="goOtherGoods" data-id='{{item.id}}'>
               <image  class="goods-image " src='{{item.img_url}}'></image>
-              <text style='font-size:24rpx;'>{{item.title}}</text>
+              <text style='font-size:24rpx;width:145rpx; overflow: hidden; height:40rpx; text-align:center'>{{item.title}}</text>
           </view>
       </view>
 

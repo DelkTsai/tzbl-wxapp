@@ -32,17 +32,18 @@ Page({
       id: options.id
     })
     this.getData();
-    this.getshopNum();
+    
   },
   //计算购物车商品件数
   getshopNum(){
     const shopCart = wx.getStorageSync('shopCart') || [];
     let shopNum=0;
     if (shopCart.length<=0)return;
-    shopCart.forEach((value,index,arr)=>{
-      this.setData({
-        shopNum: shopNum + value.num
-      })
+    shopCart.forEach((value,index,arr)=>{  
+      shopNum += value.num
+    })
+    this.setData({
+      shopNum: shopNum 
     })
   },
 
@@ -57,7 +58,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.getshopNum();
   
   },
 

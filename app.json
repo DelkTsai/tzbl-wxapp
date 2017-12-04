@@ -6,7 +6,6 @@
     "pages/prefer/detail",
     "pages/shoppingCart/index",
     "pages/shoppingCart/submitOrder",
-    "pages/shoppingCart/confirmPayment",
     "pages/shoppingCart/paymentSucces",
     "pages/mine/index",
     "pages/mine/order",

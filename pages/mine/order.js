@@ -35,6 +35,7 @@ Page({
         });
       }
     });
+    this.getData();
   },
   tabClick: function (e) {
     this.setData({
@@ -73,12 +74,15 @@ Page({
       for(let i=0; i< list.length; i++){
         shelves({ data: { where: JSON.stringify({ id:  list[i].shelves_id})}}).then(res=>{
             list[i].shelves_name=res.data.list[0].name;
-            if (list[i].status==101){
-              list1.push(list[i])
-            }else{
-              list2.push(list[i])
-            }
+           
             if (i == list.length-1){
+              for(let item of list){
+                if (item.status == 101) {
+                  list1.push(item)
+                } else {
+                  list2.push(item)
+                }
+              }
               this.setData({
                 list1: list1,
                 list2: list2
@@ -122,7 +126,7 @@ Page({
    */
   onShow: function () {
   
-    this.getData();
+ 
   },
 
   /**

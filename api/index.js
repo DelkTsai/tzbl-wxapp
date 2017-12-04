@@ -127,10 +127,12 @@ const order =(params)=>{
  * 微信支付
  */
 const payorder =(params)=>{
+  params.method = params.method || 'post';
   return new Promise((resolve, reject) => {
     resolve(wxRequest(params, `${config.apiUrl}/wx_pay`));
   })
 }
+
 module.exports = {
   search,
   getUserInfoById,
@@ -142,5 +144,4 @@ module.exports = {
   order_detail,
   order,
   payorder
-
 };

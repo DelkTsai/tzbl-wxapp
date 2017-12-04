@@ -29,12 +29,12 @@
             <view class="yhlist-bd">请选择</view>
         </navigator>
    </view> 
-   <view class='yh pay-type'>
+   <!-- <view class='yh pay-type'>
           <navigator url="" class="yhlist line-before-bottom" hover-class="weui-cell_active">
             <view class="yhlist-hd"><image src="/assets/pay_wechat.png" class="img"></image> </view>
             <image src='/assets/choose.png' class='choose'></image>
         </navigator>
-   </view>        
+   </view>         -->
   <view style="width:100%; height:140rpx;"></view>
   <view class="but-fixed">
     <button class="weui-btn" type="primary" bindtap="confirmOrder">确认订单</button>

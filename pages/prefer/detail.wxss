@@ -181,6 +181,7 @@
   width: 145rpx;
   height: 145rpx;
   margin-bottom: 10rpx;
+ 
 }
 .choose-num .hui{
   background-color: #999999
